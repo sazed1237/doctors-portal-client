@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 
 const SingUp = () => {
@@ -13,6 +14,10 @@ const SingUp = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, UpdatingError] = useUpdateProfile(auth);
     const navigate = useNavigate()
+
+    const [token] = useToken(user)
+
+
 
 
     let singInError;
@@ -25,16 +30,16 @@ const SingUp = () => {
         return <Loading></Loading>
     }
 
-    if (user) {
-        console.log(user)
+    if (token) {
+        console.log(token)
+        navigate('/')
     }
 
 
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({displayName: data.name})
-        navigate('/')
     }
 
 

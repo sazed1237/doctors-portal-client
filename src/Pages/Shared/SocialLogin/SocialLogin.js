@@ -4,6 +4,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
 
 
 const SocialLogin = () => {
@@ -12,14 +13,18 @@ const SocialLogin = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
+    // created hooks for user PUT methods
+    const [token] = useToken(user)
+
+
     const from = location.state?.from?.pathname || "/";
 
 
     let singInError;
 
     useEffect(() => {
-        if (user) {
-            console.log(user)
+        if (token) {
+            console.log(token)
             navigate(from, { replace: true });
         }
     }, [user, navigate, from])
