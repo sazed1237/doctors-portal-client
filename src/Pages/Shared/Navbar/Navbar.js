@@ -7,10 +7,12 @@ import { signOut } from 'firebase/auth';
 const Navbar = () => {
 
     const [user, loading, error] = useAuthState(auth);
+    
 
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken')
     };
 
 
@@ -23,7 +25,7 @@ const Navbar = () => {
         <li><Link to={'/contact'}>Contact us</Link></li>
 
         {
-            user && <li><Link to={'/dashboard'}>My Appointment</Link></li>
+            user && <li><Link to={'/dashboard'}>Dashboard</Link></li>
         }
 
         {/* <li>{user ?

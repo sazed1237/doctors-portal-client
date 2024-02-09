@@ -22,6 +22,11 @@ import {
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyAppointment from './Pages/Dashboard/MyAppointment';
 import MyReviews from './Pages/Dashboard/MyReviews';
+import Users from './Pages/Dashboard/AllUsers/Users';
+import RequireAdmin from './PrivateRoute/RequireAdmin';
+import Review from './Review/Review';
+import About from './About/About';
+import ContactUs from './ContactUs/ContactUs';
 
 const queryClient = new QueryClient()
 
@@ -51,6 +56,18 @@ const router = createBrowserRouter([
     path: '/singup',
     element: <SingUp></SingUp>
   },
+  {
+    path: '/reviews',
+    element: <Review></Review>
+  },
+  {
+    path: '/about',
+    element: <About></About>
+  },
+  {
+    path: '/contact',
+    element: <ContactUs></ContactUs>
+  },
 
 
   {
@@ -64,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/reviews',
         element: <MyReviews></MyReviews>
+      },
+      {
+        path: '/dashboard/users',
+        element: <RequireAdmin><Users></Users></RequireAdmin>
       }
     ]
   }

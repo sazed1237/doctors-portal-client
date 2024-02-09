@@ -6,6 +6,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
@@ -14,16 +15,18 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [token] = useToken(user)
+
     let from = location.state?.from?.pathname || '/';
 
     let singInError;
 
     useEffect(() => {
-        if (user) {
-            console.log(user)
+        if (token) {
+            console.log(token)
             navigate(from, { replace: true });
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
 
     if (error) {
         singInError = <p className='text-red-500 text-center text-sm'>{error?.message}</p>
@@ -125,6 +128,7 @@ const Login = () => {
                             </div>
 
                             {singInError}
+
                         </form>
 
                         <div>

@@ -27,7 +27,7 @@ const SocialLogin = () => {
             console.log(token)
             navigate(from, { replace: true });
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
 
 
 
