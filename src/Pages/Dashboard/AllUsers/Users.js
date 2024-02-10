@@ -2,30 +2,15 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading';
 import UserRow from './UserRow';
-import auth from '../../../firebase.init';
-import { signOut } from 'firebase/auth';
-import Swal from 'sweetalert2';
 
 const Users = () => {
 
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
         method: 'GET',
         headers: {
-            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            authorization : `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }).then(res => {
-        if (res.status === 403 || res.status === 401) {
-            signOut(auth);
-            localStorage.removeItem('accessToken')
-
-            Swal.fire({
-                title: "Failed!",
-                text: `forbidden access`,
-                icon: "error"
-            });
-        }
-        return res.json()
-    }))
+    }).then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
@@ -34,7 +19,7 @@ const Users = () => {
 
     return (
         <section>
-            {/* page Header */}
+            {/* page Header */} 
             <div className='flex p-7 '>
                 {/* <h1 className='text-3xl flex-1 font-bold'>My Appointment</h1> */}
                 <label for="my-drawer-2" class=" text-xl md:text-3xl flex-1 font-bold ">All Users: {users.length}</label>
