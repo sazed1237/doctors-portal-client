@@ -12,11 +12,11 @@ const Dashboard = () => {
     return (
         <section className='max-w-7xl mx-auto'>
             <Navbar></Navbar>
-            <div class="drawer lg:drawer-open">
-                <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+            <div className="drawer lg:drawer-open">
+                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-                <div class="drawer-content min-h-full bg-base-200 ">
-                    
+                <div className="drawer-content min-h-full bg-base-200 ">
+
 
                     {/* <!-- Page content here --> */}
                     <div className=' min-h-screen mx-3 md:mx-20 justify-center'>
@@ -24,13 +24,15 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div class="drawer-side">
-                    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-60 min-h-full bg-base-100 text-base-content">
+                <div className="drawer-side">
+                    <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <ul className="menu p-4 w-60 min-h-full bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to={'/dashboard'}>My Appointment</Link></li>
                         <li><Link to={'/dashboard/reviews'}>My Reviews</Link></li>
-                        { admin && <li><Link to={'/dashboard/users'}>All Users</Link></li>}
+                        {admin && <li><Link to={'/dashboard/users'}>All Users</Link></li>}
+                        {admin && <li><Link to={'/dashboard/add-doctors'}>Add a Doctor</Link></li>}
+                        {admin && <li><Link to={'/dashboard/manage-doctor'}>Manage Doctor</Link></li>}
                     </ul>
 
                 </div>

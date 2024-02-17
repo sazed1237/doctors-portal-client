@@ -1,14 +1,13 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading';
-import UserRow from './UserRow';
+import DoctorRow from './DoctorRow';
 
-const Users = () => {
+const ManageDoctor = () => {
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
-        method: 'GET',
+    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('http://localhost:5000/doctors', {
         headers: {
-            authorization : `Bearer ${localStorage.getItem('accessToken')}`
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
 
@@ -16,13 +15,12 @@ const Users = () => {
         return <Loading></Loading>
     }
 
-
     return (
         <section>
-            {/* page Header */} 
+            {/* page Header */}
             <div className='flex p-7 '>
                 {/* <h1 className='text-3xl flex-1 font-bold'>My Appointment</h1> */}
-                <label htmlFor="my-drawer-2" className=" text-xl md:text-3xl flex-1 font-bold ">All Users: {users.length}</label>
+                <label htmlFor="my-drawer-2" className=" text-xl md:text-3xl flex-1 font-bold ">Manage Doctor: {doctors.length}</label>
             </div>
 
             <div className="overflow-x-auto">
@@ -31,23 +29,27 @@ const Users = () => {
                     <thead className='bg-slate-400 text-white'>
                         <tr>
                             <th></th>
-                            <th>NAME</th>
-                            <th>SERVICE</th>
-                            <th>TIME</th>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th>Specialty</th>
+                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <!-- row 1 --> */}
                         {
-                            users.map((user, index) => <UserRow
-                                key={user._id}
-                                user={user}
+                            doctors.map((doctor, index) => <DoctorRow
+                                key={doctor._id}
+                                doctor={doctor}
                                 index={index}
                                 refetch={refetch}
-                            ></UserRow>)
-                        }
 
+                            ></DoctorRow>)
+                        }
                     </tbody>
+
+
+
                 </table>
             </div>
 
@@ -56,4 +58,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default ManageDoctor;

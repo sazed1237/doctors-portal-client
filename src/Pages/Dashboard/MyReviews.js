@@ -6,7 +6,7 @@ const MyReviews = () => {
             {/* page Header */}
             <div className='flex p-7 '>
                 {/* <h1 className='text-3xl flex-1 font-bold'>My Appointment</h1> */}
-                <label for="my-drawer-2" class=" text-xl md:text-3xl flex-1 font-bold ">My Reviews</label>
+                <label htmlFor="my-drawer-2" className=" text-xl md:text-3xl flex-1 font-bold ">My Reviews</label>
             </div>
         </section>
     );

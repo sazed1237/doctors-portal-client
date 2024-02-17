@@ -27,6 +27,9 @@ import RequireAdmin from './PrivateRoute/RequireAdmin';
 import Review from './Review/Review';
 import About from './About/About';
 import ContactUs from './ContactUs/ContactUs';
+import AddDoctor from './Pages/Dashboard/AddDoctor/AddDoctor';
+import ManageDoctor from './Pages/Dashboard/ManageDoctor/ManageDoctor';
+import Payment from './Pages/Payment/Payment';
 
 const queryClient = new QueryClient()
 
@@ -41,13 +44,30 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>
       },
+      {
+        path: '/reviews',
+        element: <Review></Review>
+      },
+      {
+        path: '/about',
+        element: <About></About>
+      },
+      {
+        path: '/contact',
+        element: <ContactUs></ContactUs>
+      },
+      {
+        path: '/appointment',
+        element: <PrivateRoute><Appointment></Appointment></PrivateRoute>
+      },
     ]
   },
 
   {
-    path: '/appointment',
-    element: <PrivateRoute><Appointment></Appointment></PrivateRoute>
+    path: 'payment/:id',
+    element: <Payment></Payment>
   },
+
   {
     path: '/login',
     element: <Login></Login>
@@ -55,18 +75,6 @@ const router = createBrowserRouter([
   {
     path: '/singup',
     element: <SingUp></SingUp>
-  },
-  {
-    path: '/reviews',
-    element: <Review></Review>
-  },
-  {
-    path: '/about',
-    element: <About></About>
-  },
-  {
-    path: '/contact',
-    element: <ContactUs></ContactUs>
   },
 
 
@@ -85,7 +93,15 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/users',
         element: <RequireAdmin><Users></Users></RequireAdmin>
-      }
+      },
+      {
+        path: '/dashboard/add-doctors',
+        element: <RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>
+      },
+      {
+        path: '/dashboard/manage-doctor',
+        element: <RequireAdmin><ManageDoctor></ManageDoctor></RequireAdmin>
+      },
     ]
   }
 

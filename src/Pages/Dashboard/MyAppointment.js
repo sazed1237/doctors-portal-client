@@ -50,12 +50,12 @@ const MyAppointment = () => {
             {/* page Header */}
             <div className='flex p-7 '>
                 {/* <h1 className='text-3xl flex-1 font-bold'>My Appointment</h1> */}
-                <label for="my-drawer-2" class=" text-xl md:text-3xl flex-1 font-bold ">My Appointment</label>
+                <label htmlFor="my-drawer-2" className=" text-xl md:text-3xl flex-1 font-bold ">My Appointment</label>
 
                 {/* Calender */}
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn m-1">{formattedDate}</div>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-50 md:w-70">
+                <div className="dropdown dropdown-end">
+                    <div tabIndex="0" role="button" className="btn m-1">{formattedDate}</div>
+                    <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-50 md:w-70">
                         <DayPicker
                             mode="single"
                             selected={date}
@@ -64,8 +64,8 @@ const MyAppointment = () => {
                     </ul>
                 </div>
             </div>
-            <div class="overflow-x-auto">
-                <table class="table bg-base-100">
+            <div className="overflow-x-auto">
+                <table className="table bg-base-100">
                     {/* <!-- head --> */}
                     <thead className='bg-slate-400 text-white'>
                         <tr>
@@ -73,6 +73,7 @@ const MyAppointment = () => {
                             <th>NAME</th>
                             <th>SERVICE</th>
                             <th>TIME</th>
+                            <th>PAYMENT</th>
                         </tr>
                     </thead>
                     <tbody>

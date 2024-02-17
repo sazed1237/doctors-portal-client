@@ -4,7 +4,8 @@ import Swal from 'sweetalert2';
 import auth from '../../../firebase.init';
 
 const UserRow = ({ user, index, refetch }) => {
-    const { email, role } = user;
+    const { _id, email, role } = user;
+    // console.log('userRow', user)
 
     const makeAdmin = () => {
         fetch(`http://localhost:5000/users/admin/${email}`, {
@@ -40,12 +41,52 @@ const UserRow = ({ user, index, refetch }) => {
 
     }
 
+
+    const handleDelete = (id) => {
+        console.log(id)
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You won't to Delete user ${email}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/user/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        authorization : `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "User has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                        refetch()
+                    })
+            }
+        });
+    }
+
+
     return (
         <tr>
             <th>{index + 1}</th>
             <td>{email}</td>
-            <td>{role !== 'admin' && <button onClick={makeAdmin} class="btn btn-xs">Make Admin</button>}</td>
-            <td><button class="btn btn-xs">Remove</button></td>
+            <td>{role !== 'admin' && <button onClick={makeAdmin} className="btn btn-xs">Make Admin</button>}</td>
+            <td><button onClick={() => handleDelete(_id)} className="btn btn-xs">Remove</button></td>
         </tr>
     );
 };
