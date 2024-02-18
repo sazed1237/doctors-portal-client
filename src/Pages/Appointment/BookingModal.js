@@ -31,7 +31,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
         }
         // console.log(_id, name, booking)
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://doctors-portal-server-three-zeta.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

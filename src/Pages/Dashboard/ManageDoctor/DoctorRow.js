@@ -21,7 +21,7 @@ const DoctorRow = ({ doctor, index, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/doctor/${id}`, {
+                fetch(`https://doctors-portal-server-three-zeta.vercel.app/doctor/${id}`, {
                     method: "DELETE",
                     headers: {
                         authorization : `Bearer ${localStorage.getItem('accessToken')}`

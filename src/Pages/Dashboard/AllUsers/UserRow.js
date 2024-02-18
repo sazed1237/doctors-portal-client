@@ -8,7 +8,7 @@ const UserRow = ({ user, index, refetch }) => {
     // console.log('userRow', user)
 
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/users/admin/${email}`, {
+        fetch(`https://doctors-portal-server-three-zeta.vercel.app/users/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -56,7 +56,7 @@ const UserRow = ({ user, index, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/user/${id}`, {
+                fetch(`https://doctors-portal-server-three-zeta.vercel.app/user/${id}`, {
                     method: "DELETE",
                     headers: {
                         authorization : `Bearer ${localStorage.getItem('accessToken')}`

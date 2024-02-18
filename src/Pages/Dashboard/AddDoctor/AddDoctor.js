@@ -11,7 +11,7 @@ const AddDoctor = () => {
     const [updateProfile, updating, UpdatingError] = useUpdateProfile(auth);
 
     // use REACT QUERY
-    const { data: services, isLoading, refetch } = useQuery(['services'], () => fetch(`http://localhost:5000/services`)
+    const { data: services, isLoading, refetch } = useQuery(['services'], () => fetch(`https://doctors-portal-server-three-zeta.vercel.app/services`)
         .then(res => res.json())
     )
 
@@ -50,7 +50,7 @@ const AddDoctor = () => {
                         img: imgUrl
                     }
 
-                    fetch(`http://localhost:5000/doctors`, {
+                    fetch(`https://doctors-portal-server-three-zeta.vercel.app/doctors`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

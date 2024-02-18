@@ -14,7 +14,7 @@ const CheckoutForm = ({ appointment }) => {
     const { _id, price, patientName, email, treatmentName, } = appointment
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://doctors-portal-server-three-zeta.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -96,7 +96,7 @@ const CheckoutForm = ({ appointment }) => {
                 appointment: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/bookings/${_id}`, {
+            fetch(`https://doctors-portal-server-three-zeta.vercel.app/bookings/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

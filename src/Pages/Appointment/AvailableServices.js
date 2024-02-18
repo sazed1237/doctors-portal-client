@@ -14,7 +14,7 @@ const AvailableServices = ({ date }) => {
 
     
     // use REACT QUERY
-    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`https://doctors-portal-server-three-zeta.vercel.app/available?date=${formattedDate}`)
         .then(res => res.json())
     )
 
@@ -26,7 +26,7 @@ const AvailableServices = ({ date }) => {
 
     // use JS 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    //     fetch(`https://doctors-portal-server-three-zeta.vercel.app/available?date=${formattedDate}`)
     //         .then(res => res.json())
     //         .then(data => setServices(data))
     // }, [formattedDate])

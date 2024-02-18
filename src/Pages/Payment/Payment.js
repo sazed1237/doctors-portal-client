@@ -14,7 +14,7 @@ const Payment = () => {
 
     const { id } = useParams()
 
-    const { data: appointment, isLoading, refetch } = useQuery(['bookings', id], () => fetch(`http://localhost:5000/bookings/${id}`, {
+    const { data: appointment, isLoading, refetch } = useQuery(['bookings', id], () => fetch(`https://doctors-portal-server-three-zeta.vercel.app/bookings/${id}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
