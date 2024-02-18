@@ -22,8 +22,9 @@ const MyAppointment = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://doctors-portal-server-three-zeta.vercel.app/bookings?email=${user.email}`, {
+            fetch(`http://localhost:5000/bookings?email=${user.email}`, {
                 method: 'GET',
+  
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },

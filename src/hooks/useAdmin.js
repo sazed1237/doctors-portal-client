@@ -7,11 +7,12 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://doctors-portal-server-three-zeta.vercel.app/admin/${email}`, {
+            fetch(`http://localhost:5000/admin/${email}`, {
                 method: 'GET',
+
                 headers: {
                     'content-type': 'application/json',
-                    authorization : `Bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
             })
                 .then(res => res.json())
@@ -22,7 +23,7 @@ const useAdmin = user => {
                 })
         }
     }, [user])
-    return [admin, adminLoading ]
+    return [admin, adminLoading]
 }
 
 export default useAdmin;
